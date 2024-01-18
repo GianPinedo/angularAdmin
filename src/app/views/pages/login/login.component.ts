@@ -25,8 +25,15 @@ export class LoginComponent {
     private loginService: LoginService
     ) {}
   
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+      const token = localStorage.getItem('token');
+    
+      if (token) {
+        // Redirige al dashboard si hay un token en el localStorage
+        this.router.navigate(['/dashboard']);
+      }
+    }
+    
   
   login(){
     if(this.loginForm.valid){

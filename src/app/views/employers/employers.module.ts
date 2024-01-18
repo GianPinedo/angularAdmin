@@ -11,7 +11,10 @@ import {
   NavModule,
   ProgressModule,
   TableModule,
-  TabsModule 
+  TabsModule,
+  DropdownComponent,
+  PlaceholderAnimationDirective,
+  PlaceholderDirective,
 } from '@coreui/angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { IconModule } from '@coreui/icons-angular';
@@ -38,7 +41,10 @@ import { DocsComponentsModule } from '@docs-components/docs-components.module';
     ChartjsModule,
     AvatarModule,
     TableModule,
-    IconModule
+    IconModule,
+    DocsComponentsModule,
+    PlaceholderAnimationDirective,
+    PlaceholderDirective,	
   ]
 })
 export class EmployersModule {

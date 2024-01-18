@@ -3,6 +3,20 @@
     <c-card class="mb-4">
       <c-card-header>Lista de Empleados</c-card-header>
       <c-card-body>
+        <p cPlaceholderAnimation="glow" *ngIf="isLoading">
+          <span cCol="12" cPlaceholder cPlaceholderSize="lg"></span>
+          <br>
+          <span cCol="12" cPlaceholder cPlaceholderSize="sm"></span>
+          <br>
+          <span cCol="12" cPlaceholder cPlaceholderSize="sm"></span>
+          <br>
+          <span cCol="12" cPlaceholder cPlaceholderSize="sm"></span>
+          <br>
+          <span cCol="12" cPlaceholder cPlaceholderSize="sm"></span>
+          <br>
+          <span cCol="12" cPlaceholder cPlaceholderSize="sm"></span>
+        </p>
+        
         <table
           [hover]="true"
           [responsive]="true"
@@ -10,64 +24,76 @@
           align="middle"
           cTable
           class="mb-0 border"
+          *ngIf="!isLoading"
         >
           <thead cTableColor="light">
             <tr>
               <th class="text-center">
                 <c-icon name="cil-people"></c-icon>
               </th>
-              <th>User</th>
-              <th class="text-center">Country</th>
+              <th>Nombre</th>
+              <th class="text-center">Correo</th>
               <th>Usage</th>
-              <th class="text-center">Payment Method</th>
-              <th>Activity</th>
+              <th class="text-center">DNI</th>
+              <th>AREA</th>
+              <th class="text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users; index as i">
+            
+            <tr *ngFor="let user of employers; index as i">
               <td class="text-center">
-                <c-avatar
-                  size="md"
-                  src="{{ user.avatar }}"
-                  status="{{ user.status }}"
-                ></c-avatar>
+               {{ user.id }} 
               </td>
               <td>
-                <div>{{ user.name }}</div>
+                <div>{{ user.nombres }}</div>
                 <div class="small text-medium-emphasis text-nowrap">
                   <span>
-                    {{ user.state }} | Registered: {{ user.registered }}
+                    {{ user.apellido }}
                   </span>
                 </div>
               </td>
               <td class="text-center">
-                <span> {{user.country }} </span>
+                <span> {{user.correo }} </span>
               </td>
               <td>
                 <div class="d-flex justify-content-between">
                   <div class="float-start">
-                    <strong>{{ user.usage }}%</strong>
+                    <strong>{{ 100 }}%</strong>
                   </div>
                   <div class="float-end ms-1 text-nowrap">
                     <small class="text-medium-emphasis">
-                      {{ user.period }}
+                      {{ user.dni }}
                     </small>
                   </div>
                 </div>
                 <c-progress thin>
                   <c-progress-bar
-                    [value]="user.usage"
-                    color="{{ user.color }}"
+                    [value]="100"
+                    color="green"
                   ></c-progress-bar>
                 </c-progress>
               </td>
               <td class="text-center">
-                <span class="fw-semibold">{{ user.payment }}</span>
+                <span class="fw-semibold">{{ user.telefono }}</span>
               </td>
               <td>
                 <div class="small text-medium-emphasis">Last login</div>
-                <div class="fw-semibold text-nowrap">{{ user.activity }}</div>
+                <div class="fw-semibold text-nowrap">{{ user.area }}</div>
               </td>
+              <td class="text-center">
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  type="button"
+                >
+                  <c-icon name="cil-pencil"></c-icon>
+                </button>
+                <button
+                  class="btn btn-sm btn-outline-danger"
+                  type="button" 
+                >
+                  <c-icon name="cil-trash"></c-icon>
+                </button>
             </tr>
           </tbody>
         </table>
