@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Employers } from '../../services/employers/employersRequest';
 import { EmployersService } from '../../services/employers/employers.service';
+import { PostulantesService } from '../../services/postulantes/postulantes.service';
+import { Postulantes } from '../../services/postulantes/postulanteRequest';
 
 
 @Component({
@@ -10,15 +12,16 @@ import { EmployersService } from '../../services/employers/employers.service';
 })
 export class EmployersComponent {
   employers: Employers[] = [];
+  postulantes: Postulantes[] = [];
   isLoading = false;
-  constructor(private employersService: EmployersService) {
+  constructor(private employersService: EmployersService,private postulantesService: PostulantesService) {
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.employersService.getEmployers().subscribe({
+    this.postulantesService.getPostulantes().subscribe({
       next: response => {
-        this.employers = response.tabla;
+        this.postulantes = response.tabla;
       },
       error: error => {
         console.log(error);
@@ -26,8 +29,7 @@ export class EmployersComponent {
       complete: () => {
         this.isLoading = false;
       }
-    }
-    );
+    });
   }
   
 
